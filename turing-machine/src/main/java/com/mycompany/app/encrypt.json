@@ -1,0 +1,67 @@
+{
+	"Q": ["q0","q1","q2","q3","q4"],
+	"Σ": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ñ", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "],
+	"Γ": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ñ", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "-"],
+	"q0": "q0",
+	"F": ["q0"],
+	"Blanc": "-",
+	"δ": {
+		"transition1": {
+			"key": ["q0",["alpha","beta","-"]],
+			"value": ["q0",["alpha","beta","-"],["S","R","S"]]
+		},
+		"transition2": {
+			"key": ["q0",["alpha", "alpha", "-"]],
+			"value": ["q2",["alpha","alpha", "-"],["S","R","R"]]
+		},
+		"transition3": {
+			"key": ["q0",["alpha","-","-"]],
+			"value": ["q1",["alpha","-","-"],["S","L","S"]]
+		},
+
+		"transition4": {
+			"key": ["q1",["alpha","beta","-"]],
+			"value": ["q1",["alpha","beta","-"],["S","L","S"]]
+		},
+
+		"transition5": {
+			"key": ["q1",["alpha","alpha","-"]],
+			"value": ["q2",["alpha","alpha","-"],["S","R","R"]]
+		},
+
+		"transition6": {
+			"key": ["q2",["alpha","beta"," "]],
+			"value": ["q2",["alpha","beta"," "],["S","R","R"]]
+		},
+
+		"transition7": {
+			"key": ["q2",["alpha","-"," "]],
+			"value": ["q3",["alpha","-"," "],["S","L","S"]]
+		},
+
+		"transition8": {
+			"key": ["q2",["alpha","beta","-"]],
+			"value": ["q4",["beta","beta","-"],["R","S","L"]]
+		},
+
+		"transition9": {
+			"key": ["q3",["alpha","beta"," "]],
+			"value": ["q3",["alpha","beta"," "],["S","L","S"]]
+		},
+
+		"transition10": {
+			"key": ["q3",["alpha","-"," "]],
+			"value": ["q2",["alpha","-"," "],["S","R","S"]]
+		},
+
+		"transition11": {
+			"key": ["q4",["alpha","beta"," "]],
+			"value": ["q4",["alpha","beta"," "],["S","S","L"]]
+		},
+
+		"transition12": {
+			"key": ["q4",["alpha","beta","-"]],
+			"value": ["q0",["alpha","beta","-"],["S","S","R"]]
+		}
+	}
+}
