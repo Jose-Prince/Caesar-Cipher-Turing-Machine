@@ -1,15 +1,13 @@
-package com.mycompany.app;
-
 import java.util.List;
 
 public class Machine {
-    public List<String> Q; //Estados
-    public List<String> Σ; //Alfabeto de entrada
-    public List<String> Γ; //Alfabeto de cinta
-    public String q0; //Estado inicial
-    public List<String> F; //Estados finales
-    public String Blanc; //Símbolo blanco
-    public List<List<List<Object>>> δ; //Lista de transiciones
+    public List<String> Q; // Estados
+    public List<String> Σ; // Alfabeto de entrada
+    public List<String> Γ; // Alfabeto de cinta
+    public String q0; // Estado inicial
+    public List<String> F; // Estados finales
+    public String Blanc; // Símbolo blanco
+    public List<List<List<Object>>> δ; // Lista de transiciones
 
     public List<String> getQ() {
         return Q;
@@ -49,7 +47,7 @@ public class Machine {
 
     public void setF(List<String> F) {
         this.F = F;
-    } 
+    }
 
     public String getBlanc() {
         return Blanc;
