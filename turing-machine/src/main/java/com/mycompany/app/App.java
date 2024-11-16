@@ -17,27 +17,21 @@ public class App {
 		System.out.println("Encriptador/Desencriptador de cifrado césar");
 
 		// Sets input
-		System.err.print("\nIngrese el texto que quiere encriptar/desencriptar: ");
+		System.err.print("\nIngrese el texto que quiere encriptar/desencriptar");
+		System.err.print("\n(Incluye el valor 'k' seguido por # antes del texto): ");
 		String input = scan.nextLine();
-		// Sets k
-		System.out.print("Ingrese el valor k: ");
-		int k = scan.nextInt();
-		scan.nextLine();
 
-		List<String> states = new ArrayList<>();
-		List<String> alphabet = new ArrayList<>();
-		String initial_state = "";
-		List<String> final_states = new ArrayList<>();
-		List<List<List<Object>>> transitions = new ArrayList<>();
 		System.out.println("\nEscoja una de las siguientes opciones:\n(1) Encriptar\n(2) Desencriptar");
 		System.out.print("Opción: ");
 		int option = scan.nextInt();
 		scan.nextLine();
 
 		if (option == 1) {
-			try (FileReader reader = new FileReader("encrypt.json")) {
+			try (FileReader reader = new FileReader("./turing-machine/src/main/java/com/mycompany/app/encrypt.json")) {
 				Machine machine = gson.fromJson(reader, Machine.class);
 				Encriptar encript_machine = new Encriptar(machine, input);
+				String result = encript_machine.derivation(machine.getQ0(), machine.getF().get(0), machine.getDelta());
+				System.err.println("Resultado: " + result + "\n");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
