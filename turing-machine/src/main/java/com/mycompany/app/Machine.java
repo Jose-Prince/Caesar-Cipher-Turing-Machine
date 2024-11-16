@@ -2,12 +2,12 @@ import java.util.List;
 
 public class Machine {
     public List<String> Q; // Estados
-    public List<String> Σ; // Alfabeto de entrada
-    public List<String> Γ; // Alfabeto de cinta
+    public List<String> sigma; // Alfabeto de entrada
+    public List<String> gamma; // Alfabeto de cinta
     public String q0; // Estado inicial
     public List<String> F; // Estados finales
     public String Blanc; // Símbolo blanco
-    public List<List<List<Object>>> δ; // Lista de transiciones
+    public List<List<List<Object>>> delta; // Lista de transiciones
 
     public List<String> getQ() {
         return Q;
@@ -17,20 +17,20 @@ public class Machine {
         this.Q = q;
     }
 
-    public List<String> getΣ() {
-        return Σ;
+    public List<String> getsigma() {
+        return sigma;
     }
 
-    public void setΣ(List<String> Σ) {
-        this.Σ = Σ;
+    public void setsigma(List<String> sigma) {
+        this.sigma = sigma;
     }
 
-    public String getΓ() {
+    public String getgamma() {
         return q0;
     }
 
-    public void setΓ(List<String> Γ) {
-        this.Γ = Γ;
+    public void setgamma(List<String> gamma) {
+        this.gamma = gamma;
     }
 
     public String getQ0() {
@@ -58,10 +58,10 @@ public class Machine {
     }
 
     public List<List<List<Object>>> getDelta() {
-        return δ;
+        return delta;
     }
 
-    public void setDelta(List<List<List<Object>>> δ) {
-        this.δ = δ;
+    public void setDelta(List<List<List<Object>>> delta) {
+        this.delta = delta;
     }
 }
