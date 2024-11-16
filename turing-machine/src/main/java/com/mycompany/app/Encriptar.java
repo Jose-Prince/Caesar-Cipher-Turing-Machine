@@ -7,13 +7,14 @@ public class Encriptar {
     private String input;
     private List<String> inputTape;
     private List<String> alphabetTape;
-    private List<String> k_alphabetTape;
+    private List<String> kTape;
 
     public Encriptar(Machine machine, String input) {
-        this.key = input.charAt(0) - '0';
-        this.input = input.substring(1);
+        String[] inputInfo = input.split("#");
+        this.key = Integer.parseInt(inputInfo[0]);
+        this.input = inputInfo[1];
 
-        tapesInitialization(machine.getBlanc(), machine.getΣ());
+        tapesInitialization(machine.getBlanc(), machine.getsigma());
     }
 
     private void tapesInitialization(String blanc, List<String> alphabet) {
@@ -25,13 +26,13 @@ public class Encriptar {
         inputTape.add(blanc);
 
         alphabetTape = new ArrayList<>(Arrays.asList(blanc, blanc));
-        k_alphabetTape = new ArrayList<>(Arrays.asList(blanc, blanc));
+        kTape = new ArrayList<>(Arrays.asList(blanc, blanc));
         for (int i = 0; i < alphabet.size(); i++) {
             alphabetTape.add(alphabet.get(i));
         }
 
         for (int i = 0; i < (key - 1); i++) {
-            k_alphabetTape.add(" ");
+            kTape.add(" ");
         }
 
     }
@@ -57,10 +58,12 @@ public class Encriptar {
             k_index += Integer.parseInt(changes[6]);
         }
 
-        return "ahjbfdj";
+        String encriptedMessage = inputTape.toString();
+
+        return encriptedMessage;
     }
 
-    private String[] transition(String state, String charInput, String charAlphabet, String charKAlphabet) {
+    private String[] transition(String state, String charInput, String charAlphabet, String charK) {
         String[] changes = new String[7];
         // alpha = charInput
         // beta = charAlphabet
@@ -117,8 +120,8 @@ public class Encriptar {
                 break;
             case "q2":
                 if (charInput != charAlphabet) {
-                    if (charKAlphabet == " ") { // ["q2", "alpha", "beta", " "], ["q2", "alpha", "beta", " ", "S", "R",
-                                                // "R"]
+                    if (charK == " ") { // ["q2", "alpha", "beta", " "], ["q2", "alpha", "beta", " ", "S", "R",
+                                        // "R"]
                         changes[0] = "q2";
                         changes[1] = charInput;
                         changes[2] = charAlphabet;
@@ -126,8 +129,8 @@ public class Encriptar {
                         changes[4] = "0";
                         changes[5] = "1";
                         changes[6] = "1";
-                    } else if (charKAlphabet == "-") { // ["q2", "alpha", "beta", "-"], ["q4", "beta", "beta", "-", "R",
-                                                       // "S", "L"]
+                    } else if (charK == "-") { // ["q2", "alpha", "beta", "-"], ["q4", "beta", "beta", "-", "R",
+                                               // "S", "L"]
                         changes[0] = "q4";
                         changes[1] = charAlphabet;
                         changes[2] = charAlphabet;
@@ -169,8 +172,8 @@ public class Encriptar {
                 break;
             case "q4":
                 if (charInput != charAlphabet) {
-                    if (charKAlphabet == " ") { // ["q4", "alpha", "beta", " "], ["q4", "alpha", "beta", " ", "S", "S",
-                                                // "L"]
+                    if (charK == " ") { // ["q4", "alpha", "beta", " "], ["q4", "alpha", "beta", " ", "S", "S",
+                                        // "L"]
                         changes[0] = "q4";
                         changes[1] = charInput;
                         changes[2] = charAlphabet;
@@ -178,15 +181,15 @@ public class Encriptar {
                         changes[4] = "0";
                         changes[5] = "0";
                         changes[6] = "-1";
-                    } else if (charKAlphabet == "-") { // ["q4", "alpha", "beta", " "], ["q4", "alpha", "beta", " ",
-                                                       // "S", "S", "L"]
-                        changes[0] = "q4";
+                    } else if (charK == "-") { // ["q4", "alpha", "beta", "-"], ["q0", "alpha", "beta", "-", "S", "S",
+                                               // "R"]
+                        changes[0] = "q0";
                         changes[1] = charAlphabet;
                         changes[2] = charAlphabet;
-                        changes[3] = " ";
+                        changes[3] = "-";
                         changes[4] = "0";
                         changes[5] = "0";
-                        changes[6] = "-1";
+                        changes[6] = "1";
                     }
                 }
                 break;
