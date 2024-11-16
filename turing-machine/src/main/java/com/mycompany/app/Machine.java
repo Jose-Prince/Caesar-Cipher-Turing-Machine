@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Map;
 
 public class Machine {
     public List<String> Q; // Estados
@@ -7,7 +8,7 @@ public class Machine {
     public String q0; // Estado inicial
     public List<String> F; // Estados finales
     public String Blanc; // Símbolo blanco
-    public List<List<List<Object>>> delta; // Lista de transiciones
+    public Map<String, List<String>> delta; // Lista de transiciones
 
     public List<String> getQ() {
         return Q;
@@ -57,11 +58,11 @@ public class Machine {
         this.Blanc = blanc;
     }
 
-    public List<List<List<Object>>> getDelta() {
+    public Map<String, List<String>> getDelta() {
         return delta;
     }
 
-    public void setDelta(List<List<List<Object>>> delta) {
+    public void setDelta(Map<String, List<String>> delta) {
         this.delta = delta;
     }
 }
