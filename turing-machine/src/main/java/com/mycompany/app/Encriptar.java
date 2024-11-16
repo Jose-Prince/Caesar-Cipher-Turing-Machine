@@ -9,8 +9,10 @@ public class Encriptar {
     private List<String> inputTape;
     private List<String> alphabetTape;
     private List<String> kTape;
+    private Map<String, List<String>> delta;
 
     public Encriptar(Machine machine, String input) {
+        System.err.println("\nGuardando información para encriptar :)");
         String[] inputInfo = input.split("#");
         this.key = Integer.parseInt(inputInfo[0]);
         this.input = inputInfo[1];
@@ -20,16 +22,18 @@ public class Encriptar {
 
     private void tapesInitialization(String blanc, List<String> alphabet) {
         inputTape = new ArrayList<>(Arrays.asList(blanc, blanc));
-        for (int i = 0; i < input.length(); i++) {
+        for (int i = 0; i < input.length(); i++) { // alfabeto - ' '
             inputTape.add(String.valueOf(input.charAt(i)));
         }
         inputTape.add(blanc);
         inputTape.add(blanc);
 
         alphabetTape = new ArrayList<>();
-        for (int i = 0; i < alphabet.size(); i++) {
+        for (int i = 0; i < (alphabet.size() - 1); i++) {
             alphabetTape.add(alphabet.get(i));
         }
+        alphabetTape.add(blanc);
+        alphabetTape.add(blanc);
 
         kTape = new ArrayList<>(Arrays.asList(blanc, blanc));
         for (int i = 0; i < (key - 1); i++) {
@@ -41,30 +45,36 @@ public class Encriptar {
     }
 
     public String derivation(String initialState, String acceptanceState, Map<String, List<String>> delta) {
+        System.err.println("\nEncriptando mensaje...");
+        this.delta = delta;
         String state = initialState;
         int index = 2;
         int alph_index = 2;
         int k_index = 1;
 
-        while (state != acceptanceState) {
-            String charTape = inputTape.get(index);
-            String alphTape = alphabetTape.get(alph_index);
-            String kcharTape = kTape.get(k_index);
+        String charTape = inputTape.get(index);
+        String alphTape = alphabetTape.get(alph_index);
+        String kcharTape = kTape.get(k_index);
 
-            List<String> changes = delta_transitions(state, charTape, alphTape, kcharTape, delta);
+        while (!(state.equals(acceptanceState) && charTape.equals("-"))) {
+            List<String> changes = delta_transitions(state, charTape, alphTape, kcharTape);
             state = changes.get(0);
             inputTape.set(index, changes.get(1));
-            alphTape = changes.get(2);
-            kcharTape = changes.get(3);
+            alphabetTape.set(alph_index, changes.get(2));
+            kTape.set(k_index, changes.get(3));
 
             index += Integer.parseInt(changes.get(4));
-            alph_index = (alph_index + Integer.parseInt(changes.get(5))) % alphabetTape.size();
+            alph_index += Integer.parseInt(changes.get(5));
             k_index += Integer.parseInt(changes.get(6));
+
+            charTape = inputTape.get(index);
+            alphTape = alphabetTape.get(alph_index);
+            kcharTape = kTape.get(k_index);
         }
 
-        String encriptedMessage = inputTape.toString();
+        String encriptedMessage = String.join("", inputTape);
 
-        return encriptedMessage;
+        return encriptedMessage.replace("-", "");
     }
 
     private String[] transition(String state, String charInput, String charAlphabet, String charK) {
@@ -211,20 +221,21 @@ public class Encriptar {
         return changes;
     }
 
-    private List<String> delta_transitions(String state, String charInput, String charAlphabet, String charK,
-            Map<String, List<String>> delta) {
-        List<String> changes = new ArrayList<>();
+    private List<String> delta_transitions(String state, String charInput, String charAlphabet, String charK) {
+        List<String> changes;
 
         // Use transitions
         String keyValue = state + ", ";
         if (charInput.equals(charAlphabet)) {
             keyValue += "alpha, alpha, ";
+        } else if (charAlphabet.equals("-")) {
+            keyValue += "alpha, -, ";
         } else {
             keyValue += "alpha, beta, ";
         }
         keyValue += charK;
 
-        changes = delta.get(keyValue);
+        changes = new ArrayList<>(delta.get(keyValue));
 
         if (changes.get(1).equals(changes.get(2))) {
             switch (changes.get(1)) {
