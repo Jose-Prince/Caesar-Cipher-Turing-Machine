@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class Encriptar {
     private int key;
@@ -39,7 +40,7 @@ public class Encriptar {
 
     }
 
-    public String derivation(String initialState, String acceptanceState) {
+    public String derivation(String initialState, String acceptanceState, Map<String, List<String>> delta) {
         String state = initialState;
         int index = 2;
         int alph_index = 2;
@@ -50,15 +51,15 @@ public class Encriptar {
             String alphTape = alphabetTape.get(alph_index);
             String kcharTape = kTape.get(k_index);
 
-            String[] changes = transition(state, charTape, alphTape, kcharTape);
-            state = changes[0];
-            inputTape.add(index, changes[1]);
-            alphTape = changes[2];
-            kcharTape = changes[3];
+            List<String> changes = delta_transitions(state, charTape, alphTape, kcharTape, delta);
+            state = changes.get(0);
+            inputTape.set(index, changes.get(1));
+            alphTape = changes.get(2);
+            kcharTape = changes.get(3);
 
-            index += Integer.parseInt(changes[4]);
-            alph_index = (alph_index + Integer.parseInt(changes[5])) % alphabetTape.size();
-            k_index += Integer.parseInt(changes[6]);
+            index += Integer.parseInt(changes.get(4));
+            alph_index = (alph_index + Integer.parseInt(changes.get(5))) % alphabetTape.size();
+            k_index += Integer.parseInt(changes.get(6));
         }
 
         String encriptedMessage = inputTape.toString();
@@ -210,11 +211,48 @@ public class Encriptar {
         return changes;
     }
 
-    // private String[] delta_transitions(String state, String charInput, String
-    // charAlphabet, String charK,
-    // List<List<List<Object>>> delta) {
-    // String[] changes = new String[7];
+    private List<String> delta_transitions(String state, String charInput, String charAlphabet, String charK,
+            Map<String, List<String>> delta) {
+        List<String> changes = new ArrayList<>();
 
-    // return changes;
-    // }
+        // Use transitions
+        String keyValue = state + ", ";
+        if (charInput.equals(charAlphabet)) {
+            keyValue += "alpha, alpha, ";
+        } else {
+            keyValue += "alpha, beta, ";
+        }
+        keyValue += charK;
+
+        changes = delta.get(keyValue);
+
+        if (changes.get(1).equals(changes.get(2))) {
+            switch (changes.get(1)) {
+                case "alpha":
+                    changes.set(1, charInput);
+                    changes.set(2, charInput);
+                    break;
+                case "beta":
+                    changes.set(1, charAlphabet);
+                    changes.set(2, charAlphabet);
+                    break;
+            }
+        } else {
+            changes.set(1, charInput);
+            changes.set(2, charAlphabet);
+        }
+
+        // Reemplazar dirección por valor de suma
+        for (int i = 4; i < changes.size(); i++) {
+            if (changes.get(i).equals("S")) {
+                changes.set(i, "0");
+            } else if (changes.get(i).equals("R")) {
+                changes.set(i, "1");
+            } else if (changes.get(i).equals("L")) {
+                changes.set(i, "-1");
+            }
+        }
+
+        return changes;
+    }
 }
