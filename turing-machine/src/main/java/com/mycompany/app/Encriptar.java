@@ -14,10 +14,10 @@ public class Encriptar {
     private Map<String, List<String>> delta;
 
     public Encriptar(Machine machine, String input) {
-        System.err.println("\nGuardando información para encriptar :)");
+        System.err.println("\nGuardando información para encriptar");
         String[] inputInfo = input.split("#");
         this.key = Integer.parseInt(inputInfo[0].trim());
-        this.input = inputInfo[1];
+        this.input = inputInfo[1].toLowerCase();
 
         tapesInitialization(machine.getBlanc(), machine.getsigma());
     }
@@ -47,7 +47,7 @@ public class Encriptar {
     }
 
     public String derivation(String initialState, String acceptanceState, Map<String, List<String>> delta) {
-        System.err.println("\nEncriptando mensaje...");
+        System.err.println("Encriptando mensaje...");
         this.delta = delta;
         String state = initialState;
         int index = 2;
@@ -230,6 +230,8 @@ public class Encriptar {
         String keyValue = state + ", ";
         if (charInput.equals(charAlphabet)) {
             keyValue += "alpha, alpha, ";
+        } else if (charInput.equals(" ")) {
+            keyValue += " , beta, ";
         } else if (charAlphabet.equals("-")) {
             keyValue += "alpha, -, ";
         } else {

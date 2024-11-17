@@ -7,6 +7,7 @@
     "Blanc": "-",
     "delta": {
         "q0, alpha, beta, -": ["q0", "alpha", "beta", "-", "S", "R", "S"],
+        "q0,  , beta, -": ["q0", " ", "beta", "-", "R", "R", "S"],
         "q0, alpha, alpha, -": ["q2", "alpha", "alpha", "-", "S", "R", "R"],
         "q0, alpha, -, -": ["q1", "alpha", "-", "-", "S", "L", "S"],
         "q1, alpha, beta, -": ["q1", "alpha", "beta", "-", "S", "L", "S"],
@@ -17,6 +18,7 @@
         "q3, alpha, beta,  ": ["q3", "alpha", "beta", " ", "S", "L", "S"],
         "q3, alpha, -,  ": ["q2", "alpha", "-", " ", "S", "R", "S"],
         "q4, alpha, beta,  ": ["q4", "alpha", "beta", " ", "S", "S", "L"],
+        "q4,  , beta,  ": ["q4", " ", "beta", " ", "R", "S", "L"],
         "q4, alpha, beta, -": ["q0", "alpha", "beta", "-", "S", "S", "S"]
     }
 }
