@@ -31,7 +31,7 @@ public class Encriptar {
         inputTape.add(blanc);
 
         alphabetTape = new ArrayList<>();
-        for (int i = 0; i < (alphabet.size() - 1); i++) {
+        for (int i = 0; i < (alphabet.size()); i++) {
             alphabetTape.add(alphabet.get(i));
         }
         alphabetTape.add(blanc);
