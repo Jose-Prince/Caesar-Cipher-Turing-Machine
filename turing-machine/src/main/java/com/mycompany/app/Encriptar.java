@@ -1,3 +1,5 @@
+package com.mycompany.app;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +16,7 @@ public class Encriptar {
     public Encriptar(Machine machine, String input) {
         System.err.println("\nGuardando información para encriptar :)");
         String[] inputInfo = input.split("#");
-        this.key = Integer.parseInt(inputInfo[0]);
+        this.key = Integer.parseInt(inputInfo[0].trim());
         this.input = inputInfo[1];
 
         tapesInitialization(machine.getBlanc(), machine.getsigma());
