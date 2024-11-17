@@ -17,21 +17,21 @@ public class Encriptar {
         System.err.println("\nGuardando información para encriptar");
         String[] inputInfo = input.split("#");
         this.key = Integer.parseInt(inputInfo[0].trim());
-        this.input = inputInfo[1].toLowerCase();
+        this.input = inputInfo[1].toLowerCase().trim();
 
         tapesInitialization(machine.getBlanc(), machine.getsigma());
     }
 
     private void tapesInitialization(String blanc, List<String> alphabet) {
         inputTape = new ArrayList<>(Arrays.asList(blanc, blanc));
-        for (int i = 0; i < input.length(); i++) { // alfabeto - ' '
+        for (int i = 0; i < input.length(); i++) {
             inputTape.add(String.valueOf(input.charAt(i)));
         }
         inputTape.add(blanc);
         inputTape.add(blanc);
 
-        alphabetTape = new ArrayList<>();
-        for (int i = 0; i < (alphabet.size()); i++) {
+        alphabetTape = new ArrayList<>(Arrays.asList(blanc, blanc));
+        for (int i = 0; i < (alphabet.size()); i++) { // alfabeto - ' '
             alphabetTape.add(alphabet.get(i));
         }
         alphabetTape.add(blanc);
