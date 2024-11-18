@@ -18,7 +18,9 @@
         "q3, alpha, alpha,  ": ["q3", "alpha", "beta", " ", "S", "L", "S"],
         "q3, alpha, -,  ": ["q2", "alpha", "-", " ", "S", "R", "S"],
         "q4, alpha, beta,  ": ["q4", "alpha", "beta", " ", "S", "S", "L"],
+        "q4, alpha, alpha,  ": ["q4", "alpha", "alpha", " ", "S", "S", "L"],
         "q4,  , beta,  ": ["q4", " ", "beta", " ", "R", "S", "L"],
+        "q4, alpha, alpha, -": ["q0", "alpha", "alpha", "-", "S", "S", "S"],
         "q4, alpha, beta, -": ["q0", "alpha", "beta", "-", "S", "S", "S"]
     }
 }
