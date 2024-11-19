@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class Encriptar {
+public class Caesar_Cipher {
     private int key;
     private String input;
     private List<String> inputTape;
@@ -13,7 +13,7 @@ public class Encriptar {
     private List<String> kTape;
     private Map<String, List<String>> delta;
 
-    public Encriptar(Machine machine, String input) {
+    public Caesar_Cipher(Machine machine, String input) {
         System.err.println("\nGuardando información para encriptar");
         String[] inputInfo = input.split("#");
         this.key = Integer.parseInt(inputInfo[0].trim());
