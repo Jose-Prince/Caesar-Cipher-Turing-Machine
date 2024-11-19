@@ -16,6 +16,7 @@
 			"q3, alpha, alpha, -": ["q4", "beta", "beta", "-", "R", "R", "S"],
 			"q4, alpha, beta, -": ["q0", "beta", "beta", "-", "S", "S", "S"],
 			"q4, alpha, alpha, -": ["q0", "beta", "beta", "-", "S", "S", "S"],
-			"q0, -, beta, -": ["q4", "-", "-", "-", "S", "S", "S"]
+			"q0, -, beta, -": ["q4", "-", "-", "-", "S", "S", "S"],
+			"q0,  , beta, -": ["q0", " ", "beta", "-", "R", "S", "S"]
 	}
 }
