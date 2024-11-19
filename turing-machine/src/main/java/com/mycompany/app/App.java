@@ -38,6 +38,9 @@ public class App {
 		} else {
 			try (FileReader reader = new FileReader("desencrypt.json")) {
 				Machine machine = gson.fromJson(reader, Machine.class);
+				Desencriptar decrypt_machine = new Desencriptar(machine, input);
+				String result = decrypt_machine.derivation(machine.getQ0(), machine.getF().get(0), machine.getDelta());
+				System.err.println("Resultado: " + result + "\n");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
