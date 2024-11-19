@@ -15,12 +15,12 @@
     "q2, alpha, -,  ": ["q3", "alpha", "-", " ", "S", "R", "S"],
     "q2, alpha, beta, -": ["q4", "beta", "beta", "-", "R", "S", "L"],
     "q3, alpha, beta,  ": ["q3", "alpha", "beta", " ", "S", "R", "S"],
+	"q3, alpha, alpha,  ": ["q3", "alpha", "beta", " ", "S", "R", "S"],
     "q3, alpha, -,  ": ["q2", "alpha", "-", " ", "S", "L", "S"],
     "q4, alpha, beta,  ": ["q4", "alpha", "beta", " ", "S", "S", "L"],
     "q4, alpha, beta, -": ["q0", "alpha", "beta", "-", "S", "S", "S"],
     "q4, alpha, alpha,  ": ["q4", "alpha", "beta", " ", "S", "S", "L"],
     "q4, alpha, alpha, -": ["q0", "alpha", "beta", "-", "S", "S", "S"],
-    "q4,  , beta,  ": ["q4", " ", "beta", " ", "L", "S", "R"],
-    "q3, alpha, alpha,  ": ["q3", "alpha", "beta", " ", "S", "R", "S"]
+    "q4,  , beta,  ": ["q4", " ", "beta", " ", "R", "S", "L"]
   }
 }
