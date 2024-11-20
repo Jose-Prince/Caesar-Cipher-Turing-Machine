@@ -3,6 +3,9 @@ package com.mycompany.app;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
 import com.google.gson.Gson;
 
 import java.io.FileReader;
@@ -52,15 +55,20 @@ class EncriptTest {
                 "El texto encriptado debería coincidir con el esperado para 'hola mundo' con k=3.");
     }
 
-    @Test
-    void testCompleteFlow() throws IOException {
-        String input = "3#hola mundo";
-
+    @ParameterizedTest
+    @CsvSource({
+            "3#hola mundo, krod pxqgr",
+            "5#java test, ofaf yjxy",
+            "1#cipher, djqifs",
+            "7#prueba, wyblih",
+            "3 # ROMA NO FUE CONSTRUIDA EN UN DIA, URPD QR IXH FRQVWUXLGD HQ XQ GLD"
+    })
+    void testCompleteFlow(String input, String expected) {
         Caesar_Cipher cipher = new Caesar_Cipher(machine, input);
         String result = cipher.derivation(machine.getQ0(), machine.getF().get(0), machine.getDelta());
 
         assertNotNull(result, "El texto encriptado no debería ser nulo.");
-        assertEquals("krod pxqgr", result,
+        assertEquals(expected.toLowerCase(), result,
                 "El resultado del cifrado debería ser correcto para la clave proporcionada.");
     }
 }
