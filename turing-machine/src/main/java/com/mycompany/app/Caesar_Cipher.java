@@ -13,6 +13,30 @@ public class Caesar_Cipher {
     private List<String> kTape;
     private Map<String, List<String>> delta;
 
+    public int getKey() {
+        return key;
+    }
+
+    public String getInput() {
+        return input;
+    }
+
+    public List<String> getInputTape() {
+        return inputTape;
+    }
+
+    public List<String> getAlphabetTape() {
+        return alphabetTape;
+    }
+
+    public List<String> getkTape() {
+        return kTape;
+    }
+
+    public Map<String, List<String>> getDelta() {
+        return delta;
+    }
+
     public Caesar_Cipher(Machine machine, String input) {
         System.err.println("\nGuardando información para encriptar");
         String[] inputInfo = input.split("#");
