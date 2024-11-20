@@ -40,7 +40,7 @@ public class Caesar_Cipher {
     public Caesar_Cipher(Machine machine, String input) {
         System.err.println("\nGuardando información para encriptar");
         String[] inputInfo = input.split("#");
-        this.key = Integer.parseInt(inputInfo[0].trim());
+        this.key = Integer.parseInt(inputInfo[0].trim()) % 26;
         this.input = inputInfo[1].toLowerCase().trim();
 
         tapesInitialization(machine.getBlanc(), machine.getsigma());

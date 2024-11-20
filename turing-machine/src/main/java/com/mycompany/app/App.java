@@ -27,7 +27,7 @@ public class App {
 		scan.nextLine();
 
 		if (option == 1) {
-			try (FileReader reader = new FileReader("." + "/turing-machine/encrypt.json")) {
+			try (FileReader reader = new FileReader("encrypt.json")) {
 				Machine machine = gson.fromJson(reader, Machine.class);
 				Caesar_Cipher encript_machine = new Caesar_Cipher(machine, input);
 				String result = encript_machine.derivation(machine.getQ0(), machine.getF().get(0), machine.getDelta());
@@ -36,7 +36,7 @@ public class App {
 				e.printStackTrace();
 			}
 		} else {
-			try (FileReader reader = new FileReader("." + "/turing-machine/desencrypt.json")) {
+			try (FileReader reader = new FileReader("desencrypt.json")) {
 				Machine machine = gson.fromJson(reader, Machine.class);
 				Caesar_Cipher encript_machine = new Caesar_Cipher(machine, input);
 				String result = encript_machine.derivation(machine.getQ0(), machine.getF().get(0), machine.getDelta());
