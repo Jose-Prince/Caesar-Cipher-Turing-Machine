@@ -82,20 +82,22 @@ public class Caesar_Cipher {
         String alphTape = alphabetTape.get(alph_index);
         String kcharTape = kTape.get(k_index);
 
-        while (!(state.equals(acceptanceState) && charTape.equals("-"))) {
-            List<String> changes = delta_transitions(state, charTape, alphTape, kcharTape);
-            state = changes.get(0);
-            inputTape.set(index, changes.get(1));
-            alphabetTape.set(alph_index, changes.get(2));
-            kTape.set(k_index, changes.get(3));
-
-            index += Integer.parseInt(changes.get(4));
-            alph_index += Integer.parseInt(changes.get(5));
-            k_index += Integer.parseInt(changes.get(6));
-
-            charTape = inputTape.get(index);
-            alphTape = alphabetTape.get(alph_index);
-            kcharTape = kTape.get(k_index);
+        if (this.key > 0) {
+            while (!(state.equals(acceptanceState) && charTape.equals("-"))) {
+                List<String> changes = delta_transitions(state, charTape, alphTape, kcharTape);
+                state = changes.get(0);
+                inputTape.set(index, changes.get(1));
+                alphabetTape.set(alph_index, changes.get(2));
+                kTape.set(k_index, changes.get(3));
+    
+                index += Integer.parseInt(changes.get(4));
+                alph_index += Integer.parseInt(changes.get(5));
+                k_index += Integer.parseInt(changes.get(6));
+    
+                charTape = inputTape.get(index);
+                alphTape = alphabetTape.get(alph_index);
+                kcharTape = kTape.get(k_index);
+            }
         }
 
         String encriptedMessage = String.join("", inputTape);
